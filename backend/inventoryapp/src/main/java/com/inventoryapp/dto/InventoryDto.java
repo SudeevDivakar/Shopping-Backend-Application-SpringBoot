@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InventoryUpdatedDto {
-    private boolean updated;
+public class InventoryDto {
+    private boolean status;
     private String message;
-    private Integer newQuantity;
+    private Integer stock;
 }

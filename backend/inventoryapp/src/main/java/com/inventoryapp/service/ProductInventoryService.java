@@ -1,9 +1,8 @@
 package com.inventoryapp.service;
 
-import com.inventoryapp.dto.InventoryFoundDto;
-import com.inventoryapp.dto.InventoryUpdatedDto;
+import com.inventoryapp.dto.InventoryDto;
 
 public interface ProductInventoryService {
-    public InventoryUpdatedDto updateInventory(String id, Integer quantity, Integer inc);
-    public InventoryFoundDto getQuantity(String id);
+    public InventoryDto updateInventory(String id, Integer quantity, Integer inc);
+    public InventoryDto getQuantity(String id);
 }

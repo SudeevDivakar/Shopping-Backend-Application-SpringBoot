@@ -1,7 +1,6 @@
 package com.inventoryapp.service;
 
-import com.inventoryapp.dto.InventoryFoundDto;
-import com.inventoryapp.dto.InventoryUpdatedDto;
+import com.inventoryapp.dto.InventoryDto;
 import com.inventoryapp.entities.Product;
 import com.inventoryapp.exceptions.IncorrectValueException;
 import com.inventoryapp.exceptions.ProductNotFoundException;
@@ -25,7 +24,7 @@ public class ProductInventoryServiceImpl implements ProductInventoryService{
     }
 
     @Override
-    public InventoryUpdatedDto updateInventory(String id, Integer quantity, Integer inc) {
+    public InventoryDto updateInventory(String id, Integer quantity, Integer inc) {
         Product product = getById(id);
 
         // No negative quantity allowed
@@ -45,20 +44,20 @@ public class ProductInventoryServiceImpl implements ProductInventoryService{
         product.setQuantity(quantity + product.getQuantity());
         productRepository.save(product);
 
-        InventoryUpdatedDto inventoryUpdatedDto = new InventoryUpdatedDto();
-        inventoryUpdatedDto.setUpdated(true);
+        InventoryDto inventoryUpdatedDto = new InventoryDto();
+        inventoryUpdatedDto.setStatus(true);
         inventoryUpdatedDto.setMessage("Inventory Updated Successfully");
-        inventoryUpdatedDto.setNewQuantity(product.getQuantity());
+        inventoryUpdatedDto.setStock(product.getQuantity());
 
         return inventoryUpdatedDto;
     }
 
     @Override
-    public InventoryFoundDto getQuantity(String id) {
+    public InventoryDto getQuantity(String id) {
         Product product = getById(id);
 
-        InventoryFoundDto inventoryFoundDto = new InventoryFoundDto();
-        inventoryFoundDto.setFound(true);
+        InventoryDto inventoryFoundDto = new InventoryDto();
+        inventoryFoundDto.setStatus(true);
         inventoryFoundDto.setMessage("Product Found with Stock - " + product.getQuantity());
         inventoryFoundDto.setStock(product.getQuantity());
 
