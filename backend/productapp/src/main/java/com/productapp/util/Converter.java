@@ -1,0 +1,29 @@
+package com.productapp.util;
+
+import com.productapp.dto.ProductDto;
+import com.productapp.entities.Product;
+
+public class Converter {
+    public static Product productDtoToProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setQuantity(productDto.getQuantity());
+        product.setDescription(productDto.getDescription());
+        product.setImageUrl(productDto.getImageUrl());
+        product.setRating(productDto.getRating());
+        return product;
+    }
+
+    public static ProductDto productToProductDto(Product product) {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
+        productDto.setName(product.getName());
+        productDto.setPrice(product.getPrice());
+        productDto.setQuantity(product.getQuantity());
+        productDto.setDescription(product.getDescription());
+        productDto.setImageUrl(product.getImageUrl());
+        productDto.setRating(product.getRating());
+        return productDto;
+    }
+}
