@@ -5,6 +5,8 @@ import com.productapp.dto.ProductDto;
 import com.productapp.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,27 +22,27 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<ProductDto> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/products/{id}")
-    public ProductDto getProductById(@PathVariable String id) {
-        return productService.getProductById(id);
+    public ResponseEntity<ProductDto> getProductById(@PathVariable String id) {
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PostMapping("/products")
-    public ProductDto addProduct(@RequestBody @Valid ProductDto productDto) {
-        return productService.addProduct(productDto);
+    public ResponseEntity<ProductDto> addProduct(@RequestBody @Valid ProductDto productDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.addProduct(productDto));
     }
 
     @PutMapping("/products/{id}")
-    public ProductDto updateProduct(@PathVariable String id, @RequestBody @Valid ProductDto productDto) {
-        return productService.updateProduct(id, productDto);
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable String id, @RequestBody @Valid ProductDto productDto) {
+        return ResponseEntity.ok(productService.updateProduct(id, productDto));
     }
 
     @DeleteMapping("/products/{id}")
-    public DeletedDto deleteProduct(@PathVariable String id) {
-        return productService.deleteProduct(id);
+    public ResponseEntity<DeletedDto> deleteProduct(@PathVariable String id) {
+        return ResponseEntity.ok(productService.deleteProduct(id));
     }
 }
