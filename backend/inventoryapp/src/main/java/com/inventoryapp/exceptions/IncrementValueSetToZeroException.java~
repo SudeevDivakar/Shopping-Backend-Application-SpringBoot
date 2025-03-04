@@ -1,0 +1,7 @@
+package com.inventoryapp.exceptions;
+
+public class IncrementValueSetToZeroException extends RuntimeException {
+  public IncrementValueSetToZeroException(String message) {
+    super(message);
+  }
+}
