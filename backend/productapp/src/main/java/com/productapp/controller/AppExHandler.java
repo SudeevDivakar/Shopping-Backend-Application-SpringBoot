@@ -2,6 +2,7 @@ package com.productapp.controller;
 
 import com.productapp.dto.ErrorDetailsDto;
 import com.productapp.exceptions.ProductNotFoundException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,7 +27,7 @@ public class AppExHandler {
         String errorMessage= ex.getBindingResult()
                 .getAllErrors()
                 .stream()
-                .map(e->e.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining(", "));
 
         ErrorDetailsDto errorDetails=
