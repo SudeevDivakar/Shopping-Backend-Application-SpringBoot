@@ -22,7 +22,7 @@ public class ProductInventoryController {
         return ResponseEntity.ok(productInventoryService.getStock(id));
     }
 
-    @PutMapping("/inventory/{id}/{quantity}")
+    @PatchMapping("/inventory/{id}/{quantity}")
     public ResponseEntity<InventoryDto> addToInventory(@PathVariable String id, @PathVariable Integer quantity, @RequestParam(defaultValue = "1") Integer inc) {
         return ResponseEntity.ok(productInventoryService.updateStock(id, quantity, inc));
     }
