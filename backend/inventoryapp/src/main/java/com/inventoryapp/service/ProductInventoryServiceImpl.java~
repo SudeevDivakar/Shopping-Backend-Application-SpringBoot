@@ -29,7 +29,7 @@ public class ProductInventoryServiceImpl implements ProductInventoryService{
 
         // No negative quantity allowed
         if (quantity < 0) {
-            throw new IncorrectValueException("Updating quantity cannot be negative");
+            throw new IncorrectValueException("Quantity cannot be negative");
         }
 
         else if (inc < 0) {

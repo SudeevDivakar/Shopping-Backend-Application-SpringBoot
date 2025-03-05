@@ -15,15 +15,15 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private Integer quantity;
+    private Integer stock;
     private Double price;
     private String imageUrl;
     private Float rating;
 
-    public Product(String name, String description, Integer quantity, Double price, String imageUrl, Float rating) {
+    public Product(String name, String description, Integer stock, Double price, String imageUrl, Float rating) {
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
+        this.stock = stock;
         this.price = price;
         this.imageUrl = imageUrl;
         this.rating = rating;

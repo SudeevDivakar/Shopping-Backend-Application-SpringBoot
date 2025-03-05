@@ -19,9 +19,9 @@ public class ProductDto {
     @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 
-    @NotNull(message = "Quantity is required")
-    @Min(value = 0, message = "Quantity cannot be negative")
-    private Integer quantity;
+    @NotNull(message = "Stock is required")
+    @Min(value = 0, message = "Stock cannot be negative")
+    private Integer stock;
 
     @NotNull(message = "Price is required")
     @Min(value = 0, message = "Price cannot be negative")
@@ -35,10 +35,10 @@ public class ProductDto {
     @Max(value = 5, message = "Rating cannot be more than 5")
     private Float rating;
 
-    public ProductDto(String name, String description, Integer quantity, Double price, String imageUrl, Float rating) {
+    public ProductDto(String name, String description, Integer stock, Double price, String imageUrl, Float rating) {
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
+        this.stock = stock;
         this.price = price;
         this.imageUrl = imageUrl;
         this.rating = rating;

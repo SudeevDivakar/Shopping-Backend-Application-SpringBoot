@@ -19,11 +19,11 @@ public class ProductInventoryController {
 
     @GetMapping("/inventory/{id}")
     public ResponseEntity<InventoryDto> getQuantity(@PathVariable String id) {
-        return ResponseEntity.ok(productInventoryService.getQuantity(id));
+        return ResponseEntity.ok(productInventoryService.getStock(id));
     }
 
     @PatchMapping("/inventory/{id}/{quantity}")
     public ResponseEntity<InventoryDto> addToInventory(@PathVariable String id, @PathVariable Integer quantity, @RequestParam(defaultValue = "1") Integer inc) {
-        return ResponseEntity.ok(productInventoryService.updateInventory(id, quantity, inc));
+        return ResponseEntity.ok(productInventoryService.updateStock(id, quantity, inc));
     }
 }

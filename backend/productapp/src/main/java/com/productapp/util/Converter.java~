@@ -8,7 +8,7 @@ public class Converter {
         Product product = new Product();
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
-        product.setStock(productDto.getStock());
+        product.setStock(productDto.getQuantity());
         product.setDescription(productDto.getDescription());
         product.setImageUrl(productDto.getImageUrl());
         product.setRating(productDto.getRating());
@@ -20,7 +20,7 @@ public class Converter {
         productDto.setId(product.getId());
         productDto.setName(product.getName());
         productDto.setPrice(product.getPrice());
-        productDto.setStock(product.getStock());
+        productDto.setQuantity(product.getStock());
         productDto.setDescription(product.getDescription());
         productDto.setImageUrl(product.getImageUrl());
         productDto.setRating(product.getRating());

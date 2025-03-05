@@ -24,12 +24,28 @@ public class AppExHandler {
     }
 
     @ExceptionHandler(IncorrectValueException.class)
-    public ResponseEntity<ErrorDetailsDto> handle400(IncorrectValueException ex) {
+    public ResponseEntity<ErrorDetailsDto> handle404(IncorrectValueException ex) {
         ErrorDetailsDto errorDetails=
-                ErrorDetailsDto.builder().errorCode(400)
+                ErrorDetailsDto.builder().errorCode(404)
                         .timestamp(java.time.LocalDateTime.now())
                         .errorMessage(ex.getMessage()).build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorDetailsDto> handle400(MethodArgumentNotValidException ex) {
+        String errorMessage= ex.getBindingResult()
+                .getAllErrors()
+                .stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(", "));
+
+        ErrorDetailsDto errorDetails=
+                ErrorDetailsDto.builder().errorCode(400)
+                        .timestamp(java.time.LocalDateTime.now())
+                        .errorMessage(errorMessage).build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
 
     @ExceptionHandler(Exception.class)
