@@ -3,7 +3,7 @@ package com.productapp.util;
 import com.productapp.dto.ProductDto;
 import com.productapp.entities.Product;
 
-public class Converter {
+public class ProductConverter {
     public static Product productDtoToProduct(ProductDto productDto) {
         Product product = new Product();
         product.setName(productDto.getName());
