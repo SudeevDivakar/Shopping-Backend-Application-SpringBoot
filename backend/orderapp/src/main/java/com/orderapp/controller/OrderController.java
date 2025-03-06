@@ -20,32 +20,32 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<OrderDto>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<OrderDto> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrder(id));
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("user/{id}")
     public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getUserOrders(id));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<OrderDto> placeOrder(@RequestBody @Valid OrderDto orderDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.placeOrder(orderDto));
     }
 
-    @PutMapping("/deliver/{id}")
+    @PutMapping("deliver/{id}")
     public ResponseEntity<OrderDto> deliverOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.deliverOrder(id));
     }
 
-    @PutMapping("/cancel/{id}")
+    @PutMapping("cancel/{id}")
     public ResponseEntity<OrderDto> cancelOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.cancelOrder(id));
     }

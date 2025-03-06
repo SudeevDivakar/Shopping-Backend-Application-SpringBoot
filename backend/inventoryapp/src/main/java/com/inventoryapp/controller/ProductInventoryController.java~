@@ -17,12 +17,12 @@ public class ProductInventoryController {
         this.productInventoryService = productInventoryService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<InventoryDto> getQuantity(@PathVariable String id) {
         return ResponseEntity.ok(productInventoryService.getStock(id));
     }
 
-    @PutMapping("{id}/{quantity}")
+    @PutMapping("/{id}/{quantity}")
     public ResponseEntity<InventoryDto> addToInventory(@PathVariable String id, @PathVariable Integer quantity, @RequestParam(defaultValue = "1") Integer inc) {
         return ResponseEntity.ok(productInventoryService.updateStock(id, quantity, inc));
     }
