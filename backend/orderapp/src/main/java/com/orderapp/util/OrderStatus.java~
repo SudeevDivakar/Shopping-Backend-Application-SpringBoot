@@ -1,0 +1,4 @@
+package com.orderapp.util;
+
+public enum OrderStatus {
+}
