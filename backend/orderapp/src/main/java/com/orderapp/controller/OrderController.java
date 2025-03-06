@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/orders")
 public class OrderController {
     private final OrderService orderService;
 
@@ -20,32 +20,32 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/")
     public ResponseEntity<List<OrderDto>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrder(id));
     }
 
-    @GetMapping("/orders/user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getUserOrders(id));
     }
 
-    @PostMapping("/orders")
+    @PostMapping("/")
     public ResponseEntity<OrderDto> placeOrder(@RequestBody @Valid OrderDto orderDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.placeOrder(orderDto));
     }
 
-    @PutMapping("orders/deliver/{id}")
+    @PutMapping("/deliver/{id}")
     public ResponseEntity<OrderDto> deliverOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.deliverOrder(id));
     }
 
-    @PutMapping("orders/cancel/{id}")
+    @PutMapping("/cancel/{id}")
     public ResponseEntity<OrderDto> cancelOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.cancelOrder(id));
     }

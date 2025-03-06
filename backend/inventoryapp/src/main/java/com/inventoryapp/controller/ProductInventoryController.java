@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/inventory")
 public class ProductInventoryController {
 
     private final ProductInventoryService productInventoryService;
@@ -17,12 +17,12 @@ public class ProductInventoryController {
         this.productInventoryService = productInventoryService;
     }
 
-    @GetMapping("/inventory/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<InventoryDto> getQuantity(@PathVariable String id) {
         return ResponseEntity.ok(productInventoryService.getStock(id));
     }
 
-    @PutMapping("/inventory/{id}/{quantity}")
+    @PutMapping("/{id}/{quantity}")
     public ResponseEntity<InventoryDto> addToInventory(@PathVariable String id, @PathVariable Integer quantity, @RequestParam(defaultValue = "1") Integer inc) {
         return ResponseEntity.ok(productInventoryService.updateStock(id, quantity, inc));
     }
