@@ -30,8 +30,8 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrder(id));
     }
 
-    @GetMapping("user/{email}")
-    public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable String email) {
+    @GetMapping("user")
+    public ResponseEntity<List<OrderDto>> getUserOrders(@RequestHeader("X-User-Email") String email) {
         return ResponseEntity.ok(orderService.getUserOrders(email));
     }
 

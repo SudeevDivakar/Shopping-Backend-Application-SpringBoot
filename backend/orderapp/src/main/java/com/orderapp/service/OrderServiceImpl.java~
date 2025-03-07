@@ -148,8 +148,6 @@ public class OrderServiceImpl implements OrderService {
         // Check if order exists
         Order order = OrderConverter.orderDtoToOrder(getOrder(orderId));
 
-        ProductDto product = retrieveProductDetails(order.getItemId());
-
         // If order is already cancelled, it cannot be delivered
         if (order.getStatus() == OrderStatus.CANCELLED) {
             throw new OrderStatusUpdateException("Order is cancelled, cannot be delivered");
@@ -162,6 +160,8 @@ public class OrderServiceImpl implements OrderService {
         // If order exists, change order status to 'DELIVERED'
         order.setStatus(OrderStatus.DELIVERED);
         orderRepository.save(order);
+
+        ProductDto product = retrieveProductDetails(order.getItemId());
 
         kafkaTemplate.send("order-delivered-topic", new NotificationDto(order.getUserEmail(),
                 product.getName(),

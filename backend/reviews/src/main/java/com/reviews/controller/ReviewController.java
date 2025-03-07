@@ -28,8 +28,8 @@ public class ReviewController {
         return ResponseEntity.ok(reviewService.getProductReviews(productId));
     }
 
-    @GetMapping("user/{userEmail}")
-    public ResponseEntity<List<ReviewDto>> getUserReviews(@PathVariable String userEmail) {
+    @GetMapping("user")
+    public ResponseEntity<List<ReviewDto>> getUserReviews(@RequestHeader("X-User-Email") String userEmail) {
         return ResponseEntity.ok(reviewService.getUserReviews(userEmail));
     }
 
