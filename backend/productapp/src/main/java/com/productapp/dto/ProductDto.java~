@@ -30,13 +30,17 @@ public class ProductDto {
     @NotBlank(message = "Image URL cannot be empty")
     private String imageUrl;
 
+    @NotNull(message = "Rating is required")
+    @Min(value = 0, message = "Rating cannot be negative")
+    @Max(value = 5, message = "Rating cannot be more than 5")
     private Float rating;
 
-    public ProductDto(String name, String description, Integer stock, Double price, String imageUrl) {
+    public ProductDto(String name, String description, Integer stock, Double price, String imageUrl, Float rating) {
         this.name = name;
         this.description = description;
         this.stock = stock;
         this.price = price;
         this.imageUrl = imageUrl;
+        this.rating = rating;
     }
 }

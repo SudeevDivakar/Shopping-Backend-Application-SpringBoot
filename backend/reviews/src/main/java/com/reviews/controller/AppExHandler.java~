@@ -1,0 +1,4 @@
+package com.reviews.controller;
+
+public class AppExHandler {
+}

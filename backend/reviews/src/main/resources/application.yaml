@@ -1,0 +1,44 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: productapp
+      repositories:
+        enabled: true
+  application:
+    name: reviews
+
+server:
+  port: 8085
+
+logging:
+  level:
+    org:
+    springframework:
+      data:
+        mongodb:
+          repository:
+            query: debug
+          core:
+            repository:
+              query: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      enabled: true
+  info:
+    env:
+      enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

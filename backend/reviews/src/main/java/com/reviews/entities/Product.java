@@ -1,10 +1,14 @@
-package com.productapp.entities;
+package com.reviews.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,17 +19,20 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private Integer quantity;
+    private Integer stock;
     private Double price;
     private String imageUrl;
-    private Float rating;
+    private Float rating = 0.0f;
+    private Long totalRating = 0L;
+    private Long totalReviews = 0L;
+    @DBRef
+    private List<Review> reviews = new ArrayList<>();
 
-    public Product(String name, String description, Integer quantity, Double price, String imageUrl, Float rating) {
+    public Product(String name, String description, Integer stock, Double price, String imageUrl) {
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
+        this.stock = stock;
         this.price = price;
         this.imageUrl = imageUrl;
-        this.rating = rating;
     }
 }
