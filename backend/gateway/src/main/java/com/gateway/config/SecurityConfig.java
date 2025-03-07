@@ -29,6 +29,7 @@ public class SecurityConfig {
         http
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/v1/orders/**").hasAnyRole("USER", "ADMIN")
+                        .pathMatchers("/api/v1/reviews/**").hasAnyRole("USER", "ADMIN")
                         .pathMatchers("/api/v1/inventory/**").hasRole("ADMIN")
                         .pathMatchers("/api/v1/products/**").hasRole("ADMIN")
                         .anyExchange().permitAll()

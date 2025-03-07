@@ -4,6 +4,7 @@ import com.reviews.dto.DeletedDto;
 import com.reviews.dto.ReviewDto;
 import com.reviews.service.ReviewService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +42,7 @@ public class ReviewController {
     @PostMapping("")
     public ResponseEntity<ReviewDto> addReview(@RequestBody @Valid ReviewDto reviewDto, @RequestHeader("X-User-Email") String userEmail) {
         reviewDto.setUserEmail(userEmail);
-        return ResponseEntity.ok(reviewService.addReview(reviewDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(reviewService.addReview(reviewDto));
     }
 
     @DeleteMapping("{reviewId}")

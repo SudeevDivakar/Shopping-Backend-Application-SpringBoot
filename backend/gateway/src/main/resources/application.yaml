@@ -39,6 +39,16 @@ spring:
               args:
                 name: productCircuitBreaker
                 fallbackUri: forward:/fallbackRoute
+#        Review Service
+        - id: review-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/reviews/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: productCircuitBreaker
+                fallbackUri: forward:/fallbackRoute
 
 server:
   port: 8084
