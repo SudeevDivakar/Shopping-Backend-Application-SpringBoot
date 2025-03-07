@@ -1,16 +1,13 @@
 package com.inventoryapp.controller;
 
 import com.inventoryapp.exceptions.IncorrectValueException;
-import com.productapp.dto.ErrorDetailsDto;
-import com.productapp.exceptions.ProductNotFoundException;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
+import com.inventoryapp.dto.ErrorDetailsDto;
+import com.inventoryapp.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class AppExHandler {
