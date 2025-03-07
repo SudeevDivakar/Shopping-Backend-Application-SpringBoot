@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 public class CustomFeignErrorDecoder implements ErrorDecoder {
 
-    private final ErrorDecoder defaultErrorDecoder = new Default();
+//    private final ErrorDecoder defaultErrorDecoder = new Default();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override

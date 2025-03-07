@@ -57,8 +57,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDto> getUserOrders(Long userId) {
-        return orderRepository.findByUserId(userId).stream().map(OrderConverter::orderToOrderDto).toList();
+    public List<OrderDto> getUserOrders(String userEmail) {
+        return orderRepository.findByUserEmail(userEmail).stream().map(OrderConverter::orderToOrderDto).toList();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // Create Order
-        Order order = new Order(orderDto.getUserId(),
+        Order order = new Order(orderDto.getUserEmail(),
                 orderDto.getItemId(),
                 orderDto.getQuantityOrdered(),
                 totalAmount,
@@ -95,7 +95,7 @@ public class OrderServiceImpl implements OrderService {
             throw new InventoryUpdateException("Inventory Update Failed");
         }
 
-        kafkaTemplate.send("order-placed-topic", new NotificationDto("sudeev.divakar@gmail.com",
+        kafkaTemplate.send("order-placed-topic", new NotificationDto(orderDto.getUserEmail(),
                                                                             product.getName(),
                                                                             orderDto.getQuantityOrdered(),
                                                                             totalAmount,
@@ -134,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.CANCELLED);
         orderRepository.save(order);
 
-        kafkaTemplate.send("order-cancelled-topic", new NotificationDto("sudeev.divakar@gmail.com",
+        kafkaTemplate.send("order-cancelled-topic", new NotificationDto(order.getUserEmail(),
                 product.getName(),
                 order.getQuantityOrdered(),
                 order.getAmount(),
@@ -163,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
 
         ProductDto product = retrieveProductDetails(order.getItemId());
 
-        kafkaTemplate.send("order-delivered-topic", new NotificationDto("sudeev.divakar@gmail.com",
+        kafkaTemplate.send("order-delivered-topic", new NotificationDto(order.getUserEmail(),
                 product.getName(),
                 order.getQuantityOrdered(),
                 order.getAmount(),

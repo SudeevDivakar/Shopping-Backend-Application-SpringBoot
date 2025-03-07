@@ -9,7 +9,7 @@ public class OrderConverter {
         order.setId(orderDto.getId());
         order.setQuantityOrdered(orderDto.getQuantityOrdered());
         order.setAmount(orderDto.getAmount());
-        order.setUserId(orderDto.getUserId());
+        order.setUserEmail(orderDto.getUserEmail());
         order.setStatus(orderDto.getStatus());
         order.setItemId(orderDto.getItemId());
         order.setAddress(orderDto.getAddress());
@@ -20,7 +20,7 @@ public class OrderConverter {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(order.getId());
         orderDto.setItemId(order.getItemId());
-        orderDto.setUserId(order.getUserId());
+        orderDto.setUserEmail(order.getUserEmail());
         orderDto.setAddress(order.getAddress());
         orderDto.setStatus(order.getStatus());
         orderDto.setQuantityOrdered(order.getQuantityOrdered());

@@ -15,7 +15,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userEmail;
+    private Long userId;
     private String itemId;
     private Integer quantityOrdered;
     private Double amount;
@@ -24,8 +24,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    public Order(String userEmail, String itemId, Integer quantityOrdered, Double amount, String address, OrderStatus status) {
-        this.userEmail = userEmail;
+    public Order(Long userId, String itemId, Integer quantityOrdered, Double amount, String address, OrderStatus status) {
+        this.userId = userId;
         this.itemId = itemId;
         this.quantityOrdered = quantityOrdered;
         this.amount = amount;

@@ -18,8 +18,7 @@ import lombok.NoArgsConstructor;
 public class OrderDto {
     private Long id;
 
-    @NotNull(message = "User ID is required")
-    private Long userId;
+    private String userEmail;
 
     @NotBlank(message = "Item ID cannot be empty")
     private String itemId;

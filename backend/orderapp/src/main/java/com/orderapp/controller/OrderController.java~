@@ -30,9 +30,9 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrder(id));
     }
 
-    @GetMapping("user/{email}")
-    public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable String email) {
-        return ResponseEntity.ok(orderService.getUserOrders(email));
+    @GetMapping("user/{id}")
+    public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable String id) {
+        return ResponseEntity.ok(orderService.getUserOrders(id));
     }
 
     @PostMapping("")
