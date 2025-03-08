@@ -71,3 +71,18 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: orderapp
+        url: /api/v1/orders/v3/api-docs
+      - name: productapp
+        url: /api/v1/products/v3/api-docs
+      - name: inventoryapp
+        url: /api/v1/inventory/v3/api-docs
+      - name: reviews
+        url: /api/v1/reviews/v3/api-docs

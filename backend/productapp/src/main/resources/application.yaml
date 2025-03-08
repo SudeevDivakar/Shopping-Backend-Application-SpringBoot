@@ -43,3 +43,9 @@ management:
     readinessstate:
       enabled: true
 
+#Swagger Docs
+springdoc:
+  api-docs:
+    path: api/v1/products/v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
