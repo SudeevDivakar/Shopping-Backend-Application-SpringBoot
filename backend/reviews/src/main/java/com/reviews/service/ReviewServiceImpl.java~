@@ -39,11 +39,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<ReviewDto> getUserReviews(String userEmail) {
-        List<ReviewDto> reviews = reviewRepository.findByUserEmail(userEmail).stream().map(ReviewConverter::reviewToReviewDto).toList();
-        if (reviews.isEmpty()) {
-            throw new ReviewNotFoundException("User has not added any reviews");
-        }
-        return reviews;
+        return reviewRepository.findByUserEmail(userEmail).stream().map(ReviewConverter::reviewToReviewDto).toList();
     }
 
     @Override
