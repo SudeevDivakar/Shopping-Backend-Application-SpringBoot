@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000/realms/ShoppingApplication
+          issuer-uri: http://localhost:9000/realms/gateway
   cloud:
     gateway:
       routes:
@@ -63,6 +63,11 @@ management:
       enabled: true
     health:
       enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+
   info:
     env:
       enabled: true
@@ -71,6 +76,9 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   api-docs:

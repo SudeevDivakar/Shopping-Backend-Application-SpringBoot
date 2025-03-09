@@ -37,6 +37,10 @@ management:
       enabled: true
     health:
       enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
   info:
     env:
       enabled: true
@@ -45,3 +49,6 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0

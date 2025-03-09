@@ -36,7 +36,7 @@ public class SecurityConfig {
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
-                                .jwkSetUri("http://localhost:9000/realms/ShoppingApplication/protocol/openid-connect/certs")
+                                .jwkSetUri("http://localhost:9000/realms/gateway/protocol/openid-connect/certs")
                                 .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter()))
                         )
                 )
@@ -58,7 +58,7 @@ public class SecurityConfig {
                 return Collections.emptyList();
             }
 
-            Map<String, Object> client = (Map<String, Object>) resourceAccess.get("gateway-client");
+            Map<String, Object> client = (Map<String, Object>) resourceAccess.get("gateway");
             if (client == null) {
                 return Collections.emptyList();
             }
