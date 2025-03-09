@@ -50,6 +50,8 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+    circuitbreakers:
+      enabled: true
   tracing:
     sampling:
       probability: 1.0
@@ -60,3 +62,33 @@ springdoc:
     path: api/v1/orders/v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventory:
+        minimumNumberOfCalls: 5
+        eventConsumerBufferSize: 10
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionsFromOpenToHalfOpenEnabled: true
+      products:
+        minimumNumberOfCalls: 5
+        eventConsumerBufferSize: 10
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionsFromOpenToHalfOpenEnabled: true
+  timelimiter:
+    instances:
+      inventory:
+        timeoutDuration: 3s
+      products:
+        timeoutDuration: 3s
