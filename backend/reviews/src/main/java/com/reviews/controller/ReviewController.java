@@ -4,6 +4,7 @@ import com.reviews.dto.DeletedDto;
 import com.reviews.dto.ReviewDto;
 import com.reviews.service.ReviewService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +26,13 @@ public class ReviewController {
     }
 
     @GetMapping("product/{productId}")
-    public ResponseEntity<List<ReviewDto>> getProductReviews(@PathVariable String productId) {
-        return ResponseEntity.ok(reviewService.getProductReviews(productId));
+    public ResponseEntity<Page<ReviewDto>> getProductReviews(@PathVariable String productId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(reviewService.getProductReviews(productId, page, size));
     }
 
     @GetMapping("user")
-    public ResponseEntity<List<ReviewDto>> getUserReviews(@RequestHeader("X-User-Email") String userEmail) {
-        return ResponseEntity.ok(reviewService.getUserReviews(userEmail));
+    public ResponseEntity<Page<ReviewDto>> getUserReviews(@RequestHeader("X-User-Email") String userEmail, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(reviewService.getUserReviews(userEmail, page, size));
     }
 
     @GetMapping("{reviewId}")

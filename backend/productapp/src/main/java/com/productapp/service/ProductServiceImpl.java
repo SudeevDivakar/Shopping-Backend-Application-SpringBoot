@@ -9,6 +9,9 @@ import com.productapp.repositories.ReviewRepository;
 import com.productapp.util.ProductConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,13 +28,17 @@ public class ProductServiceImpl implements ProductService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<ProductDto> getAllProducts() {
-        log.info("Fetching all products from the database");
-        List<ProductDto> products = productRepository.findAll().stream().map(ProductConverter::productToProductDto).toList();
-        log.debug("Retrieved {} products", products.size());
-        return products;
+    @Override
+    public Page<ProductDto> getAllProducts(int page, int size) {
+        log.info("Fetching paginated products from the database - Page: {}, Size: {}", page, size);
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productRepository.findAll(pageable);
+
+        return productPage.map(ProductConverter::productToProductDto);
     }
 
+    @Override
     public ProductDto getProductById(String id) {
         log.info("Fetching product with ID: {}", id);
         ProductDto productDto = ProductConverter.productToProductDto(
@@ -44,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
         return productDto;
     }
 
+    @Override
     public ProductDto addProduct(ProductDto productDto) {
         log.info("Adding new product: {}", productDto);
         Product productToBeAdded = ProductConverter.productDtoToProduct(productDto);
@@ -53,6 +61,7 @@ public class ProductServiceImpl implements ProductService {
         return savedProduct;
     }
 
+    @Override
     public ProductDto updateProduct(String id, ProductDto productDto) {
         log.info("Updating product with ID: {}", id);
         Product productToUpdate = productRepository.findById(id).orElseThrow(() -> {
@@ -71,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
         return updatedProduct;
     }
 
+    @Override
     public DeletedDto deleteProduct(String id) {
         log.info("Deleting product with ID: {}", id);
         Product productToUpdate = ProductConverter.productDtoToProduct(getProductById(id));

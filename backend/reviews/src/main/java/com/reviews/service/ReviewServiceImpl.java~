@@ -39,13 +39,16 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Page<ReviewDto> getProductReviews(String productId, int page, int size) {
         log.info("Fetching reviews for product ID: {}", productId);
+        // Check if product exists
         productRepository.findById(productId).orElseThrow(() -> {
             log.error("Product with ID {} not found", productId);
             return new ProductNotFoundException("Product not found in database");
         });
 
+        // Create Pageable object
         Pageable pageable = PageRequest.of(page, size);
 
+        // Fetch paginated reviews
         return reviewRepository.findByProductId(productId, pageable)
                 .map(ReviewConverter::reviewToReviewDto);
     }
@@ -53,8 +56,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Page<ReviewDto> getUserReviews(String userEmail, int page, int size) {
         log.info("Fetching reviews for user: {}", userEmail);
+        // Create Pageable object
         Pageable pageable = PageRequest.of(page, size);
 
+        // Fetch paginated reviews
         Page<ReviewDto> reviews = reviewRepository.findByUserEmail(userEmail, pageable)
                 .map(ReviewConverter::reviewToReviewDto);
 
@@ -62,6 +67,7 @@ public class ReviewServiceImpl implements ReviewService {
             log.warn("No reviews found for user: {}", userEmail);
             throw new ReviewNotFoundException("User has not added any reviews");
         }
+
         return reviews;
     }
 
