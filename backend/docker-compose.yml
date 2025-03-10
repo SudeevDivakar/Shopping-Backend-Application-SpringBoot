@@ -118,3 +118,78 @@ services:
       KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092
       KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8081
       DYNAMIC_CONFIG_ENABLED: 'true'
+#
+#  mysql:
+#    container_name: mysql-orderdb
+#    image: mysql:8
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: orderdb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#    volumes:
+#      - ./volume-data/mysql_orderdb:/var/lib/mysql
+#    ports:
+#      - "3307:3306"
+#
+#  mongo:
+#    container_name: mongodb
+#    image: mongo:6.0
+#    restart: always
+#    ports:
+#      - "27018:27017"
+#    volumes:
+#      - ./volume-data/mongo_data:/data/db
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: password
+#
+#  notification-service:
+#    image: notification-service
+#    container_name: notification-service
+#    ports:
+#      - "8083:8083"
+#    depends_on:
+#      - broker
+#
+#  order-service:
+#    image: order-service
+#    container_name: order-service
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - mysql
+#      - broker
+#
+#  review-service:
+#    image: review-service
+#    container_name: review-service
+#    ports:
+#      - "8085:8085"
+#    depends_on:
+#      - mongo
+#
+#  productapp-service:
+#    image: productapp-service
+#    container_name: productapp-service
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mongo
+#
+#  inventoryapp-service:
+#    image: inventoryapp-service
+#    container_name: inventoryapp-service
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - mongo
+#
+#  api-gateway:
+#    image: api-gateway
+#    container_name: api-gateway
+#    ports:
+#      - "8084:8084"
+#    depends_on:
+#      - keycloak
