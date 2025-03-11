@@ -825,7 +825,7 @@
             "logic": "POSITIVE",
             "decisionStrategy": "AFFIRMATIVE",
             "config": {
-              "roles": "[{\"id\":\"0ab5a9d3-d0a1-463a-8c3b-92e5b6b2ddbd\",\"required\":false}]"
+              "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
             }
           },
           {

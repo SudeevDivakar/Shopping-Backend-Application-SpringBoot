@@ -9,7 +9,7 @@ scrape_configs:
   - job_name: 'product-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['product-service:8086']
+      - targets: ['product-service:8080']
         labels:
           application: 'Product Service'
   - job_name: 'order-service'

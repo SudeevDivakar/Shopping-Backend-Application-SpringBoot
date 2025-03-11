@@ -205,7 +205,7 @@ services:
     image: product-service
     container_name: product-service
     ports:
-      - "8086:8086"
+      - "8086:8080"
     depends_on:
       - mongodb
     networks:

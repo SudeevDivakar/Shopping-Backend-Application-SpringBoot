@@ -4,16 +4,16 @@ spring:
       host: mongodb
       port: 27017
       database: productapp
-      username: root
-      password: password
+      username: root  # Use the root username or a user with appropriate permissions
+      password: password  # Use the password defined in the MongoDB environment
       authentication-database: admin
       repositories:
         enabled: true
   application:
-    name: inventoryapp
+    name: reviews
 
 server:
-  port: 8082
+  port: 8085
 
 logging:
   level:
@@ -41,6 +41,7 @@ management:
       enabled: true
     metrics:
       enabled: true
+
   info:
     env:
       enabled: true
@@ -56,6 +57,6 @@ management:
 #Swagger Docs
 springdoc:
   api-docs:
-    path: api/v1/inventory/v3/api-docs
+    path: api/v1/reviews/v3/api-docs
   swagger-ui:
     path: /swagger-ui.html

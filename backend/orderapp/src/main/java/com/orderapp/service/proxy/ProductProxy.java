@@ -6,7 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "productapp", url = "localhost:8080")
+//@FeignClient(name = "productapp", url = "localhost:8080")
+@FeignClient(name = "productapp", url = "http://product-service:8086")
 public interface ProductProxy {
     @GetMapping("api/v1/products/{id}")
     @CircuitBreaker(name = "products", fallbackMethod = "fallbackMethod")

@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://keycloak:8080/realms/gateway
+          issuer-uri: http://keycloak:9000/realms/gateway
   cloud:
     gateway:
       routes:
